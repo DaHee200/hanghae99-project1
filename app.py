@@ -38,6 +38,10 @@ def detail03():
 def login():
     return render_template("login.html")
 
+@app.route('/Detail02', methods=['GET'])
+def listing():
+    videos = list(db.videos.find({}, {'_id': False}))
+    return jsonify({'all_videos': videos})
 
 ## API 역할을 하는 부분
 @app.route('/Detail02', methods=['POST'])
