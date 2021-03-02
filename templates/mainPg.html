@@ -2,8 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>항해GPS</title>
     <style>
+        header {
+            height: 75px;
+            padding: 1rem;
+            color: white;
+            background: teal;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
     </style>
 
@@ -13,10 +23,19 @@
 
 </head>
 <body>
-<h1>메인페이지</h1>
-<button onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
-<button onclick="window.location.href='/detail02'">디테일페이지02로가기</button>
-<button onclick="window.location.href='/detail03'">디테일페이지03로가기</button>
-<button onclick="window.location.href='/login'">로그인하기</button>
+
+<header>
+    <h1>항해GPS | 홈페이지</h1>
+    <nav>
+        <span><button onclick="window.location.href='/login'">항해99</button></span>
+        <span><button onclick="window.location.href='/login'">로그인하기</button></span>
+    </nav>
+
+</header>
+<div class="buttons">
+<button class="buttons01"onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
+<button class="buttons02"onclick="window.location.href='/detail02'">디테일페이지02로가기</button>
+<button class="buttons03"onclick="window.location.href='/detail03'">디테일페이지03로가기</button>
+</div>
 </body>
 </html>
