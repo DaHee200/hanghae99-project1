@@ -23,6 +23,17 @@
             border: black solid;
             border-radius: 5px;
         }
+
+        .btn01 {
+            height: 50px;
+            width: 50px;
+            font-size: 30px;
+            padding-bottom: 10px;
+            border-radius: 50px;
+            background-color: #177199;
+            color: white;
+            border-color: white;
+        }
     </style>
 
     <script>
@@ -30,16 +41,7 @@
             let url = $('#post-url').val()
             let comment = $('#post-comment').val()
 
-            $.ajax({
-                type: "POST",
-                url: "/memo",
-                data: {url_give: url, title_give: title, comment_give: comment, name_give: name},
-                success: function (response) { // 성공하면
-                    alert(response["msg"]);
-                    window.location.reload()
-                }
-            })
-        }
+
 
 
     </script>
@@ -66,7 +68,7 @@
             <label for="post-comment">간단 코멘트</label>
             <textarea id="post-comment" class="form-control" rows="2"></textarea>
         </div>
-        <button type="button" class="btn btn-primary" onclick="postArticle()">기사저장</button>
+        <button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
     </div>
 </div>
 

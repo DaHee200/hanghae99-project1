@@ -15,6 +15,16 @@
             align-items: center;
         }
 
+        .btn01 {
+            height: 50px;
+            width: 50px;
+            font-size: 30px;
+            border-radius: 50px;
+            background-color: #177199;
+            color: white;
+            border-color: white;
+        }
+
     </style>
 
     <script>
@@ -29,9 +39,11 @@
     </nav>
 </header>
 <h1>디테일페이지03</h1>
+
 <button onclick="window.location.href='/'">메인페이지로가기</button>
-<button onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
-<button onclick="window.location.href='/detail02'">디테일페이지02로가기</button>
-<button onclick="window.location.href='/login'">로그인하기</button>
+<button class="buttons01"onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
+<button class="buttons02"onclick="window.location.href='/detail02'">디테일페이지02로가기</button>
+
+<button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
 </body>
 </html>

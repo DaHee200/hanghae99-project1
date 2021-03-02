@@ -39,10 +39,15 @@
             align-items: center;
         }
 
-        .btn-primary {
+        .btn01 {
             height: 50px;
             width: 50px;
-            font-size: 50px;
+            font-size: 30px;
+            padding-bottom: 10px;
+            border-radius: 50px;
+            background-color: #177199;
+            color: white;
+            border-color: white;
         }
 
         .wrap {
@@ -54,6 +59,7 @@
             color: blue;
             font-weight: bold;
         }
+
         #post-box {
             width: 500px;
             margin: 20px auto;
@@ -62,10 +68,6 @@
             border-radius: 5px;
         }
 
-        .card-columns {
-            display: flex;
-            justify-content: flex-start;
-        }
     </style>
     <script>
         $(document).ready(function () {
@@ -75,10 +77,10 @@
         function openClose() {
             if ($("#post-box").css("display") == "block") {
                 $("#post-box").hide();
-                $("#btn-post-box").text("포스팅 박스 열기");
+                $("#btn-post-box").text("+");
             } else {
                 $("#post-box").show();
-                $("#btn-post-box").text("포스팅 박스 닫기");
+                $("#btn-post-box").text("-");
             }
         }
 
@@ -140,17 +142,16 @@
 </header>
 
 <div class="wrap">
-    <button onclick="window.location.href='/'" nav-fixed>메인페이지로가기</button>
+    <button onclick="window.location.href='/'">메인페이지로가기</button>
     <button onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
     <button onclick="window.location.href='/detail03'">디테일페이지03로가기</button>
-    <button onclick="window.location.href='/login'">로그인하기</button>
+
     <div class="jumbotron">
         <h1 class="display-4">나홀로 링크 메모장!</h1>
         <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
         <hr class="my-4">
         <p class="lead">
-            <button onclick="openClose()" id="btn-post-box" type="button" class="btn-primary">
-            </button>
+            <button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
         </p>
     </div>
     <div id="post-box" class="form-post" style="display:none">
