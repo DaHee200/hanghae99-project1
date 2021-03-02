@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Webpage Title -->
+    <title>Home | 99_GPS</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="항해 GPS : 당신의 항해를 안전하게"/>
+    <meta property="og:description" content="mini project for Web Plus"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}"/>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Stylish&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='mystyle.css') }}" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="{{ url_for('static', filename='myjs.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            get_posts()
+        })
+
+    </script>
+
+    <style>
+        .cont {
+            text-align: right;
+        }
+    </style>
+    <style>
+        .pg1 {
+            background: #1AAB8A;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        .pg2 {
+            background: #1AAB8A;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        .pg3 {
+            background: #1AAB8A;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="has-navbar-fixed-top">
+<nav class="navbar is-fixed-top is-BLACK" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="{{ url_for('static', filename='gps_logo.png') }}">
+            <strong class="is-sparta"
+                    style="font-family: 'Stylish', sans-serif;font-size: larger;">항해 GPS</strong>
+        </a>
+        <a class="com">
+            <div class="ling">
+                   <strong class = "cont"
+                            style = "font-family:'stylish', sans-serif;font-size: larger;">항해 99 커뮤니티</strong>
+            </div>
+        </a>
+    </div>
+</nav>
+<section class="section">
+    <article class="media">
+        <figure class="media-left" style="align-self: center">
+            <a class="image is-32x32" href="/user/{{ user_info.username }}">
+                <img class="is-rounded" src="{{ url_for('static', filename=user_info.profile_pic_real) }}">
+            </a>
+        </figure>
+
+        <div class="media-content">
+            <div class="field">
+                <p class="control">
+                    <input id="input-post" class="input is-rounded" placeholder="그림 준비중!"
+                           onclick='$("#modal-post").addClass("is-active")'>
+                </p>
+            </div>
+        </div>
+    </article>
+    <div class="modal" id="modal-post">
+        <div class="modal-background" onclick='$("#modal-post").removeClass("is-active")'></div>
+        <div class="modal-content">
+            <div class="box">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="field">
+                            <p class="control">
+                                        <textarea id="textarea-post" class="textarea"
+                                                  placeholder="오늘 하루 어떠셨나요?"></textarea>
+                            </p>
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-left">
+
+                            </div>
+                            <div class="level-right">
+                                <div class="level-item">
+                                    <a class="button is-sparta" onclick="post()">포스팅하기</a>
+                                </div>
+                                <div class="level-item">
+                                    <a class="button is-sparta is-outlined"
+                                       onclick='$("#modal-post").removeClass("is-active")'>취소</a>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"
+                onclick='$("#modal-post").removeClass("is-active")'></button>
+    </div>
+
+</section>
+{#<section class="section1">#}
+{#    <div class="card">#}
+{#        <div class="card-image">#}
+{#            <figure class="image is-4by3">#}
+{#                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">#}
+                <button class=pg1 onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
+
+
+{#            </figure>#}
+{#            <section class="section2">#}
+{#                <div class="card">#}
+{#                    <div class="card-image">#}
+{#                        <figure class="image is-4by3">#}
+{#                            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">#}
+                            <button class = "pg2" onclick="window.location.href='/detail03'" >디테일페이지02로가기</button>
+
+
+
+{#                        </figure>#}
+{#                        <section class="section3">#}
+{#                            <div class="card">#}
+{#                                <div class="card-image">#}
+{#                                    <figure class="image is-4by3">#}
+{#                                        <img src="https://bulma.io/images/placeholders/300x360.png"#}
+{#                                             alt="Placeholder image">#}
+                                        <button class = "pg3" onclick="window.location.href='/login'">디테일페이지03으로가기</button>
+                                    </figure>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </section>
+</body>
+</html>
+{#<button onclick="window.location.href='/'">메인페이지로가기</button>#}
+{#<button onclick="window.location.href='/detail01'">디테일페이지01로가기</button>#}
+{#<button onclick="window.location.href='/detail03'">디테일페이지02로가기</button>#}
+{#<button onclick="window.location.href='/login'">로그인하기</button>#}
