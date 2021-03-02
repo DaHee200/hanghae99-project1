@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //get_list()
+        })
+
+        function get_list() {
+            $.ajax({
+                type: "GET",
+                url: "http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99",
+                data: {},
+                success: function (response) {
+                    let rows = response["RealtimeCityAir"]["row"];
+                    $("#gu-list").empty()
+                    for (let i = 0; i < rows.length; i++) {
+                        let gu_name = rows[i]["MSRSTE_NM"]
+                        let gu_mise = rows[i]["IDEX_MVL"]
+                        let temp_html = `<li>${gu_name} : ${gu_mise}</li>`
+
+                        $("#gu-list").append(temp_html)
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<h1>디테일페이지02</h1>
+<button onclick="window.location.href='/'">메인페이지로가기</button>
+<button onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
+<button onclick="window.location.href='/detail03'">디테일페이지03로가기</button>
+<button onclick="window.location.href='/login'">로그인하기</button>
+</body>
+</body>
+</html>
