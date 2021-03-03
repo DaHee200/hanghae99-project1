@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import requests
-from datetime import  datetime
+from datetime import datetime
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True

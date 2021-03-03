@@ -1,3 +1,4 @@
+/* 공통 header css */
 header {
     height: 75px;
     padding: 1rem;
@@ -13,9 +14,14 @@ header {
     width: 100%;
     top: 0;
 }
-header h1 {
+header .headerLogo {
     font-size: 2rem;
 }
+header .headerTitle {
+    font-size: 3rem;
+}
+
+/* 공통 컨테이너 css */
 .container {
     padding-top: 24px;
     padding-bottom: 24px;

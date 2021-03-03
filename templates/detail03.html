@@ -10,6 +10,7 @@
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -23,30 +24,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-    <style>
-        header {
-            height: 75px;
-            padding: 1rem;
-            color: white;
-            background: rgb(98, 104, 221);
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .btn01 {
-            height: 50px;
-            width: 50px;
-            font-size: 30px;
-            border-radius: 50px;
-            background-color: #177199;
-            color: white;
-            border-color: white;
-        }
-
-    </style>
-
     <script>
         function sign_out() {
             $.removeCookie('mytoken', {path: '/'});
@@ -58,28 +35,28 @@
 
 <body>
 <header>
-    <h1>항해GPS</h1>
-    <h1>SOS</h1>
+    <div class="headerLogo">항해GPS</div>
+    <div class="headerTitle">항해일지</div>
     <button class="button is-white" onclick="sign_out()">로그아웃</button>
 </header>
+
 <div class="container is-fullhd menuContainer">
     <div class="columns">
         <div class="column">
-            <button class="button is-medium is-fullwidth is-info is-outlined" onclick="window.location.href='/mainPg'">
+            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/mainPg'">
                 항해GPS
             </button>
         </div>
         <div class="column">
-            <button class="button is-medium is-fullwidth is-info is-outlined"
+            <button class="button is-large is-fullwidth is-info is-outlined"
                     onclick="window.location.href='/detail01'">항해일지
             </button>
         </div>
         <div class="column">
-            <button class="button is-medium is-fullwidth is-info is-outlined"
+            <button class="button is-large is-fullwidth is-info is-outlined"
                     onclick="window.location.href='/detail02'">보물창고
             </button>
         </div>
-        <button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
     </div>
 </div>
 

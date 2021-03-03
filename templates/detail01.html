@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Pen+Script&display=swap"
           rel="stylesheet">
 
-    <link href="static/css/style.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -52,23 +52,14 @@
 
 
                         let temp_html =
-                            `<div class="card">
-                                <div class="card-image">
-                                    <figure class="image is-4by3">
-                                        <img src="../static/${file}" class="card-img-top">
-                                    </figure>
+                            `<div class="col-md-4">
+                            <div class="card" style="width: 100%;">
+                                <img src="../static/${file}" class="card-img-top" alt="${file}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${title}</h5>
+                                    <p class="card-text">${content}</p>
                                 </div>
-                                <div class="card-content">
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p class="title is-4">${title}</p>
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <br>
-                                        <p>${content}</p>
-                                    </div>
-                                </div>
+                            </div>
                             </div>`
                         $('#cards-box').append(temp_html)
 
@@ -80,7 +71,7 @@
         function submit() {
             let title = $('#title').val()
             let content = $('#content').val()
-
+            
             let file = $('#file')[0].files[0]
             let form_data = new FormData()
 
@@ -103,7 +94,7 @@
         }
 
         function openClose() {
-            if ($("#post-box").css("display") == "block") {
+            if ($("#post-box").css("display") === "block") {
                 $("#post-box").hide();
                 $("#btn-post-box").text("+");
             } else {
@@ -132,30 +123,55 @@
             color: white;
             border-color: white;
         }
+
+        #post-box {
+            display: none;
+        }
+
+        #cards-box .col-md-4{
+            margin-bottom: 15px;
+        }
+        #cards-box .card-body {
+            padding: 1rem;
+        }
+
+        .formBox {
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid gray;
+            margin-bottom: 24px;
+        }
+
+        .formTitle {
+            font-size: 2.4rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+
     </style>
 </head>
 
 <body>
 <header>
-    <h1>항해GPS</h1>
-    <h1>항해일지</h1>
+    <div class="headerLogo">항해GPS</div>
+    <div class="headerTitle">항해일지</div>
     <button class="button is-white" onclick="sign_out()">로그아웃</button>
 </header>
 
 <div class="container is-fullhd menuContainer">
     <div class="columns">
         <div class="column">
-            <button class="button is-medium is-fullwidth is-info is-outlined" onclick="window.location.href='/mainPg'">
+            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/mainPg'">
                 항해GPS
             </button>
         </div>
         <div class="column">
-            <button class="button is-medium is-fullwidth is-info is-outlined"
+            <button class="button is-large is-fullwidth is-info is-outlined"
                     onclick="window.location.href='/detail02'">보물창고
             </button>
         </div>
         <div class="column">
-            <button class="button is-medium is-fullwidth is-info is-outlined"
+            <button class="button is-large is-fullwidth is-info is-outlined"
                     onclick="window.location.href='/detail03'">S.O.S
             </button>
         </div>
@@ -163,36 +179,29 @@
     <p class="lead">
         <button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
     </p>
-    <section class="hero is-info postingbox-d1">
-        <div class="hero-body" id="post-box">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="file">
-                <label class="custom-file-label">사진선택</label>
-            </div>
-            <div class="field">
-                <label class="label">Title</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="제목입력" id="title">
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Message</label>
-                <div class="control">
-                    <textarea class="textarea" placeholder="내용입력" id="content"></textarea>
-                </div>
-            </div>
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link" onclick="submit()">Submit</button>
-                </div>
-                <div class="control">
-                    <button class="button is-link is-light">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <div class="columns" id="cards-box">
+    <div class="row" id="post-box">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 formBox">
+            <div class="mb-3">
+                <div class="formTitle">포스트박스 제목 넣는 곳</div>
+            </div>
+            <div class="mb-3 custom-file">
+                <input type="file" class="custom-file-input" id="file">
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" placeholder="제목입력" id="title">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <input type="text" class="form-control" placeholder="제목입력" id="content">
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="submit()">Submit</button>
+        </div>
+    </div>
+
+    <div class="row" id="cards-box">
     </div>
 </div>
 
