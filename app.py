@@ -1,11 +1,13 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from pymongo import MongoClient
 import jwt
 import datetime
-import requests
 import hashlib
+from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
+import requests
+from datetime import  datetime
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -13,10 +15,8 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
 SECRET_KEY = 'SPARTA'
 
-from pymongo import MongoClient
-
-client = MongoClient('mongodb://13.209.41.204', 27017, username="test", password="test")
-db = client.dbsparta
+client = MongoClient('mongodb://13.125.97.225', 27017, username="test", password="test")
+db = client.userinfor
 
 
 @app.route('/')
@@ -31,32 +31,26 @@ def home():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
-
 @app.route('/login')
 def login():
     msg = request.args.get("msg")
     return render_template('login.html', msg=msg)
 
-
 @app.route('/mainPg')
 def mainPg():
     return render_template("mainPg.html")
-
 
 @app.route('/detail01')
 def detail01():
     return render_template("detail01.html")
 
-
 @app.route('/detail02')
 def detail02():
     return render_template("detail02.html")
 
-
 @app.route('/detail03')
 def detail03():
     return render_template("detail03.html")
-
 
 @app.route('/Detail02', methods=['GET'])
 def listing():
@@ -95,19 +89,6 @@ def saving():
     return jsonify({'msg': '저장이 완료되었습니다!'})
 
 
-@app.route('/user/<username>')
-def user(username):
-    # 각 사용자의 프로필과 글을 모아볼 수 있는 공간
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-
-        user_info = db.users.find_one({"username": username}, {"_id": False})
-        return render_template('user.html', user_info=user_info, status=status)
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
-
 
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
@@ -120,8 +101,8 @@ def sign_in():
 
     if result is not None:
         payload = {
-            'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+         'id': username_receive,
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -137,15 +118,14 @@ def sign_up():
     password_receive = request.form['password_give']
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     doc = {
-        "username": username_receive,  # 아이디
-        "password": password_hash,  # 비밀번호
-        "profile_name": username_receive,  # 프로필 이름 기본값은 아이디
-        "profile_pic": "",  # 프로필 사진 파일 이름
-        "profile_pic_real": "profile_pics/profile_placeholder.png",  # 프로필 사진 기본 이미지
-        "profile_info": ""  # 프로필 한 마디
+        "username": username_receive,                               # 아이디
+        "password": password_hash,                                  # 비밀번호
+        "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
+        "profile_pic": "",                                          # 프로필 사진 파일 이름
+        "profile_pic_real": "profile_pics/profile_placeholder.png", # 프로필 사진 기본 이미지
+        "profile_info": ""                                          # 프로필 한 마디
     }
     db.users.insert_one(doc)
-
     return jsonify({'result': 'success'})
 
 
@@ -155,50 +135,37 @@ def check_dup():
     exists = bool(db.users.find_one({"username": username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
+@app.route('/diary', methods=['GET'])
+def show_diary():
+    diaries = list(db.diary.find({}, {'_id':False}))
+    return jsonify({'all_diary': diaries})
 
-@app.route('/update_profile', methods=['POST'])
-def save_img():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 프로필 업데이트
-        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+@app.route('/diary', methods=['POST'])
+def save_diary():
+    title_receive = request.form['title_give']
+    content_receive = request.form['content_give']
 
+    file = request.files["file_give"]
 
-@app.route('/posting', methods=['POST'])
-def posting():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 포스팅하기
-        return jsonify({"result": "success", 'msg': '포스팅 성공'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+    extension = file.filename.split('.')[-1]
 
+    today = datetime.now()
+    mytime = today.strftime('%y-%m-%d-%h-%m-%s')
 
-@app.route('/update_like', methods=['POST'])
-def update_like():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 좋아요 수 변경
-        return jsonify({"result": "success", 'msg': 'updated'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+    filename = f'file-{mytime}'
 
+    save_to = f'static/{filename}.{extension}'
+    file.save(save_to)
 
-@app.route("/get_posts", methods=['GET'])
-def get_posts():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 포스팅 목록 받아오기
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+    doc = {
+        'title' :title_receive,
+        'content':content_receive,
+        'file' : f'{filename}.{extension}'
+    }
 
+    db.diary.insert_one(doc)
+
+    return jsonify({'msg': '포스팅완료!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

@@ -3,7 +3,9 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>메인페이 | 항해99 GPS</title>
+    <title>메인페이지 | 항해99 GPS</title>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,6 +13,7 @@
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -21,8 +24,10 @@
     <link href="static/css/style.css" rel="stylesheet">
 
     <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script>
         function sign_out() {
@@ -31,27 +36,46 @@
             window.location.href = "/login"
         }
     </script>
+
 </head>
 
 <body>
-    <header>
-        <h1>항해GPS</h1>
-        <h1>메인페이지</h1>
-        <button class="button is-white" onclick="sign_out()">로그아웃</button>
-    </header>
+<header class="head">
+    <h1>항해GPS</h1>
+    <h1>메인페이지</h1>
+    <button class="button is-white" onclick="sign_out()">로그아웃</button>
+</header>
 
-    <div class="container is-fullhd menuContainer">
-        <div class="columns">
-            <div class="column">
-                <button class="button is-medium is-fullwidth is-info is-outlined" onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
-            </div>
-            <div class="column">
-                <button class="button is-medium is-fullwidth is-info is-outlined" onclick="window.location.href='/detail02'">디테일페이지02로가기</button>
-            </div>
-            <div class="column">
-                <button class="button is-medium is-fullwidth is-info is-outlined" onclick="window.location.href='/detail03'">디테일페이지03로가기</button>
-            </div>
+<div class="container is-fullhd menuContainer">
+    <div class="columns">
+        <div class="column">
+            <button class="button is-medium is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/detail01'">항해일지
+            </button>
+        </div>
+        <div class="column">
+            <button class="button is-medium is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/detail02'">보물창고
+            </button>
+        </div>
+        <div class="column">
+            <button class="button is-medium is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/detail03'">S.O.S
+            </button>
         </div>
     </div>
-</body>
+</div>
+
+<div class="container">
+    <h2>항해 99 이수 3%</h2>
+    <p>""""Steady wins the race""""</p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="3" aria-valuemin="0"
+             aria-valuemax="100" style="width:3%">
+            3%
+        </div>
+    </div>
+</div>
+
+</head>
 </html>
