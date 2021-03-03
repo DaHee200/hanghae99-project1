@@ -163,27 +163,25 @@ def posting():
         return redirect(url_for("home"))
 
 
-@app.route("/get_posts", methods=['GET'])
-def get_posts():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 포스팅 목록 받아오기
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
 
+@app.route('/diary', methods=['GET'])
+def show_diary():
+    diaries = list(db.diary.find({}, {'_id':False}))
+    return jsonify({'all_diary': diaries})
 
-@app.route('/update_like', methods=['POST'])
-def update_like():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        # 좋아요 수 변경
-        return jsonify({"result": "success", 'msg': 'updated'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+@app.route('/diary', methods=['POST'])
+def save_diary():
+    title_receive = request.form['title_give']
+    content_receive = request.form['content_give']
 
+    doc = {
+        'title' :title_receive,
+        'content':content_receive
+    }
+
+    db.diary.insert_one(doc)
+
+    return jsonify({'msg': '포스팅완료!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
