@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <!-- Webpage Title -->
-    <title>항해일지 | 항해99 GPS</title>
+    <title> 항해99GPS | 항해일 </title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -25,6 +27,7 @@
 
     <script>
         $(document).ready(function () {
+            bsCustomFileInput.init()
             listing()
         })
 
@@ -44,12 +47,14 @@
                     for (let i = 0; i < diaries.length; i++) {
                         let title = diaries[i]['title']
                         let content = diaries[i]['content']
+                        let file = diaries[i]['file']
+
 
                         let temp_html =
                             `<div class="card">
                                 <div class="card-image">
                                     <figure class="image is-4by3">
-                                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEBUSExISFRAVEBAVEBAQFRUQEBUQFRUWFhUVFRUYHSggGBolGxUVIzEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OFxAQGi0dHR8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALABHwMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAACAwEEBQAGB//EAD4QAAICAQIDBQYDBgUDBQAAAAECABEDEiEEMUEFEyJRYTJScYGRobHB0QYUIzNCU3KSsuHwFWLxY4KTosL/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQIDBAX/xAAeEQEBAQEBAQADAQEAAAAAAAAAARESAiEDEzFBUf/aAAwDAQACEQMRAD8A1i84NOZJwxz2PjyPqdjIKxi4DCGEw2DmlCEI5cEJsB6Q6h80mFog3J1QI7GorcfepPd7XFq8aM5/2k3VTER2LMZAox2Ph5Ns/wBXJf8ADlyEi/rLfDZm/wCbSOHahpAUefrHDEJzerHR5lWcGW5ZDCUcaAecerATD1G/mrFybiQ4hSMVqWeZ3E8RLPEZqEyszzX8fll79BfJFlpBMGp0SMKYjSH3kASdJgZBxmDkQzQx8t5DQ7HDIbGYsoZqOgiGxiaT2i+FA44SrLZVYsgR9J5LKTgsYRBaGngGMrZMohZnMqODL8xHqoyZDKrkywcfrEuk0jK611aNWZ6mNTKZF8qntfBnEyquYww585OL6NuNxvKwbzjFEVhynZMKnfrK74K6x4aHFLYd8yqVQ1ljurhLiI6SuomeAYF3l0ZQOm8Sfv5Tl5TO/Wk+LLZ/SEmW+sqqhJj04VpFki5bVzG3rcPXK6YGEsID1ExuNZqSfKSM8ICA6iT8P6DLlBmdl5y1kIiGAmvn4z9fQpGgCI1gQlzCVdKWGhYQIkJlBhWPOSoDMIp83pHMBK+RZUK6W2aIfiITpE5EE0kjK2ibIJC84tUhBDKIbGAeULb1nM3pEao43kldo138hEO5lxFwrIv/AJlZqjshldpcZ1ZqSJNSQI9RjhDBkASQIGNXjVeJAhCTipVpckajymIxZFi56X1oxmmpSV667w1ynz+8i+a0nqLaoIwYllH95IhpxMm+aqeovihJGSVBlucGkcr6XRmkniBUpDJBYxcH0snjYJ42UWgM0ufjiL7qzlzAyuzxJeAWmk8s76OZ4GqKLTg0rC1YXJGDLKoMIPJsOVcXJCuVUyxwyiRYuUVQSonaxI1QMLkRTN6Q3iXPrKiaFmgFxJ0XJ7sSvifpLZvSKfNLLKIpkEqWJsqqzRTLL+gQSB5R9J4dUkCNCSdENThQEICMCQgkNGFhYQWMCQhji1WFhYxRCXHDVDFaqQvRDXHHKsIIJF9LnkkY4QSOFQtQk9K5AFFQgROLiJYxf0/4YwE7u9tjEFo7HHSl0tlMBsct1IIhPQ5Z7oYlppOBKeXH5TTz6Z+vKuTIuEywDLQm52qRUkCASDGqYAWGEMmqhqtDGSKCGFokXGn0ZMihBI9YtiPOKQWmsYljI1Dzg6pUhakiCRJ1SIyCximyQ3WKZIFdafczu5MsAQgJl3WnEVu6PlDXFLE4iHY4hQxRoxj0kgfGcRF0rl30kavSd8IQ+EWjECcYWmQV9YaeBMqce+lCQaNoPqwH5y2Zl9tHwKPezYh/9wf0hbgk2rrSITLvIl6zrhDDwQsNBCnI7VILQ2YQO8iMBMAmN1QWqPSwgtAZQY5wJXcSpUUOmMVYuzCV47pTDZOqAGgs0lWjZ4ouYMmpUkTbUWZISEqSdJhaJAaIdADlOAnGK1Ugbgs0MiCVi0EkmRGERbR6G2FnVGAQgJzdN8LEmHpnaIaMBCEnRJqGjEVOMnTO0w0YAmCRG6ZGmPosJaY3a7+LEv8A62In/wCRa/ObjiYHae+dPTJhH31fnD16/h+Z9auF7APxB+INH8IyovgF9seWVx9Tq/8A1LYSOeivlX0zqlnQJHdiPouVepOiNKQSIdDC9MFhGaYLAR6MKcRJEsNAIjlTfJegTqEIidUelgaE7QIVTtMNGA0ydMOdDT5DpkaIU6LSwJWRphGQYaeBIgMIwwTDRhRWLIlgiARDoct0CTUOpNTl10YCpNQqk1DRgKk1DqdUNGAqdUOp1Q0YCoJEYRAMejCnE85d5cZPNswO/wA6mv2zlZcJ0e2xCr6auZ+QszFoniMK7/zLP+VpNu+ocmRucLtmyr56WHzFH7y3UyhlrjPQqVHyFn7ia4lSpsDpnVDqRH0WAIi2EdUEiPRhJgGMYQGEelhZgmGYBlaWBkQpFQ0sROnSY9GIkyJFw0YKRIudcWjEyKnSCYabiIJEkmDcWjEESCJJMi4aMaK9sYffH0P6Qx2tg/uD6H9J5BR5A/aGMd7b351+kjiH1Xrh2pg/uD7/AKQv+pYf7i/eeS7quW5+IkKKO9369YcQ+q9eO0MP9xZP7/i/uL9Z5NEsXVbdf9pK4ieX06xcQdV6z99xf3F+sn98xe+v1nlXTTzrpv8AlG6Nrta9Dtv8Ycw+q9KeKx++v1isvFYxVugsgC2AsnkB6zECged+Q/Ez5z+0Xbvf5sRxM4bDxDurMwCUCAvhB258zvVxcnL/ANe1/aT9ocGPiAj5lXu8ZYp7RZ3qthuSFHKv6pT7C7XPEcTiKYcvc6nviHU48eru3oLfPlPK8N2pxHfM4PDqmYu5ZNLZVBAVVbIQXBFCt/xnsOxuNxYcWHHq4dFx2dmyPbFSpJC4xZ8R6x8yfcaT781r9oZAvFA3y7pz6Bjob/SPqZvlT5H6TzHGdrcLlIXEjZOIek1isQ9PEbJHM7ie14GqUELW1uSaJC31385nuDhSCN7rfQyRib3W+hm/jypY2O/IkeHyuxf3lxMgrYC9iBa3vyh0OXlu4b3W/wApgnC3ut9DPYoRy2utxt1hGh0j6Ty8Q+Fvdb6GKbC3ut9DPdmvt6RTovujlz2ur/CPocPCnE3ut9DFlD5H6Ge0yDGRyHkDsRfPnyiMmJAK0jmOQrfz58ofsH63kCh8j9JBU+RnpOIx76ar4U34b1K2TF5jex4ee3TevIj/AJyf7B+phUZE08nD7E+l1sfPp9PrM/Mu9UN9h4ufryj/AGJv4yzIic3h6C+osyu59NjzrmPr8o+k8r1zpnMpHSvKz0ijY62PvH0WNa5Ewyf+78RUBn9fxj0N8wTMIqT5/WC2I+fyBMA3pFTzjY28z8JX1nox+v5mBa0MJatgi9Aupi19d/8AaMAcHdV9DqYn5jREY9xqVV1Vy0mr8jRhd7lA9lSPJdS19TURLd72Vrbcgn9OcUczjkljbY78/jUz83EsCrEsCpsaASDsa1UDtL57UUUTqY86Cn8K5QNawvfRAPdHI/EyO/o6R/l5AX5Sq3aaA2cL6bG4sH12IhYu1BVshRTfMqa8tyIjajLt/KBHn1N89rnd8ousYU7atKatr5ezKJyY2GoZduYJbTZFcpZ4ftMBL1o4N7GyVIv+pT5+cRxbPEqdI04hY5gEMBy3F3POcV+wvCMb0MCd7s1d3st11M9F39Uxy4dHMgtpK1udVNuN62lrFiLsNGUJTA89YNdaYcuX1hqs14pf2Bwo9qep8Dlyti+uraavZ/7NYN0OIEmwjlAzEf1WAaYjbcHlfnPQ5sTq5ZyMgFE6QunfrXw6VOxZca5XLeJWUFTobExNE2RW/OroSPX1p5+M7sj9mURrwIutQdLeMlr9ohQ1gDldz02F6BxkgPyNFtJY/wBVHcfAausrtiRsWxClOelmONd99VXY3ktizEKmOn62MqgEgAbI6GvpIU1MByLp5OaYEY10lSLsk8gdhzlzNnZACdLGr03pNnzFb8/tMbguJ06QUAAPj9lzr2B9ki9t/ZmqmLVTIVXUGoH+r4jfbYeVcusDXOHz/wBOpbFULAbT08P5R4J3sAjp0P3O0rKxazsWA0lb5/C9hvy+8nBrLktyAIIIAs10on4wI1aG5U7t1osD6VykNjUEbX1traunM3RsD6RWZwdw+kkkWbWwL5A8+npK/EoR4lchfacsGbfYiq2+0A5lxi30igSDpUVv5jnz6yvnyYzfd40duZIUbH51LAzXS+IWQaolRv0revj5xGQYmoGv6SHVQQT8QCR8DvAyNZqnBWwR4QASAeQr5eUpBTQUBqs8woYDrvdmX9m17aKFCwL5kkUhv6SkmBShyNkZCdjz2NE6QT6CMUhsTNQoEAAk6QbqrBJ+HpdSrxWjURVsWI8IAoDcV7x5bbVK/F9qcPhYq+XUCKOnW1Eg6R4VO++35yph7W4dtK4+8vmSxYBTe5IoFDtdEAxop/EMx6BRQ1FqWm8idO3T/eJ4l/dAY7eME6N7IoaRXKRxfHYS1FnZvD4wrOo2NWQN/jsIj94XV5kEAqdSixVCgL895URVXGX1WQCaPIWCb58t/rCYG/ZIY+0GUBa2+G/6R7BSDd30FGiPI+HeZuDSHIPdBiSfCjLY3q2vnR9I0GZQux0k79BZ/H0i9NHbUPNTtQHUxm99QCTsAfkdjsOUQFJ38FEcxsT5Dxb9evnGQnby+m1XO7wVv1+Bo/IwMuELvpx6vOtR286iUy+K2HLdq5Dpe7bRkZket+fny2/58ZTzZMnIYw99eVD4E7yxlzjfxbE+l77gDlt8zK2PjRZBVwP6RsAfUVAq1Vck1ZWztf6rYieIyYgwU5iGJNDWxXy3qXshzjY5EBo8gKHyP6yqpJJJfFq6lkx6R84AbM3IHCw9chA/03G8FmwvdtiOkgMEyIWs8gFJsmJ4HgXFl2xGzsdOMfcCWB2ebJC4X6/0kk9OsNM3uFJ2BrlRsfaBkxoNmwWRZFnmfKJbgizDUgReunSGv4nlDx8An9Nmjtdsb/xLACPZ2Etf7ug3/mabW/jW/wBIeTs9ifA4G3vPv/7aqpOPGwOkaCbuhl0nYWQFI2gvxjq9OubmNiAFHpZG/wAYjKfsohSHVdN3Zdq8iKPLkOR6S+OEyKmoABaGnIATQ5c75fpKfE9oZ2yWeGwlCTSs5xmjyrZht6TWxdrEqMeThnRFvS2tGUDnYOx539YtVIHszNWtXLZAUAQEFQpu61fAHa5aXNr0nCz42tv4eRjsAKsE+GqlZsNFchRzjDgli56XpI3puXmI9uH0ZCxdkCsrY2C94h1XRIDXtvsfL1k1c1d4biciYmbJpyOzUtWrKvrt6j47zU4TicORC4QB0AtFJGQMLN+g2O8p4sz5LdDw7sAvhZDiyE9Tdj7DrCXPgZgzA4c5asi2dLe8CD02ktFzBx6hNZ8ZLDwsbKk1YHn8z1Es5g1ltRSxWgqpar92wB8DcyMmXBlTuwou7Gs6RYOxqmN+tj8o3i+JwOy/xHDVp7rAcjWRZLFRz+n1iONF8udCqoEJ02ykdyQAaLWAwP06bQOH417UMPCXIbT4gH9o1Q8XtV853AdqYjjDlzVVTKS5A95B4g2xvapc4NwRuWrl12B3F6tydhvEZXEcOq7jvTuBpTSwHwXauUYoBaqVSV1BVbQ9nbkNj139YrjQyfxE0kg/xB7TEH0/p3J3kjjP4YOVQLBplIXyIqzZjInPlygd2QGHI6mpjd7arFk7/CxKeY5QAtFF3rx2uive+MvY8yMgLBciL5G3DC6qhXIcvWZfaILMgDMqHVq8PjUWKsg2fiTAVY4DinLa9fgBFgEk7/8AadyOvpK3F8atlaLfxA5yElDW/hH229ZRfhC2PJb6UarfTqLaSKW2vSK8iJPYnZ+PvSXyOwsk48x8GqxTC7/4TAhdq5R0wllPI4nUEEjaw/jr2dgCNojJ2ZmxsdN6NJLO2Rcagc9O4DXsNiPKXu0cVAqi6dTWxd20IpPhGzb822HK5j8Zw6AEWGx94bXSWJPvEtQPIGBXCc2fAVVsrZQ2lyviStXK9QfcdOlbzOw8ahohQPIs22r3SQT+E1cWIqR4+7QqdKhQTo3ugRR69ep+EyuGwBhvjx6Dq0nV3wbpY2Av6yozpuXtLEvtZcYbV/LDcr60fW+krpx6F/CPZawwHhNeXvdOkh+AxkaWxgLd1pBHPbavhyEMcOooUQLvYKpI+Y/KUmkcZx+nIaYKNiiMzM/TcsBvvvylfBxRKWMdkKa8b6S1n3hsPh5S8uFbJDk86WqojzA9r7ShnVWHibIeZGm0UA/A7wKkLmF21ITpqshorXS6EcuUAhQcYvoW1X6gynj4XEV2Vx/iJP5cpD8JiF7P0Ph1b+m21RpW2xAjZRZ3Gk3YiOKxNfofOiPuZm5O0sdgaX57DK4UUD0UDeNy8WLs4sm/RcgNjzox6TcXj8mNf4gd6O3iXl+PWBj4rhmYkDIpPIvY39Cecn/quNwdmVRzOhPv4jIxYMFahkTSeZZbJ+FQ0lrESf5b0eoZb/0iLzYnJGtnJPVVyAfbb7StxfEcKgtuJybb1rGMfUsJnZu1Ozxu+U5DsaTIcx+VdfSLTyt3heFdP5TvsTXiIo9fC0s5xmYg6GK/1fxFT40FH6Sh+yGXguKBXEVw8RqIXDmDOz8/EtCuQv0mz2x2XpIV3QFPaKhtVHz1ekWr5sEjJ3dA5NjYVmFg35hiTykJlYMaYPS+MKRkBsAi+oImM3ZimwjIWJpbyV9xZH0lrhOyAgo97Z9rSzNz8izGBa7i0Orbh8yihZV8fibrpABIX4+tyT3iUqDIL3rKUyGvKyw26bCaTjSoVNWw5lSzcxdnVv8A7ynl7NwFe9GEd8WNjSVf/FqAMWqR2d2xk0kHhWXS6jwtjUOQaJW3AGxJtgefpvoYu0e83IOMA2Uyivaq6ZR4vl5cph/vzp4TwuUrq2KMDXqS1E9Jcx9mrlxs7LxG2okWzUoW7amoff8AWf4qW16rsjHiZWNeAFhrcOTQIrcbA/LrNbHmw2oVdRBpaO58yVBB/GfPuwf4RJxtkxkBimoNpYsCDVAhfjU9viHfKT4tRrUl6g6hQByqjdXQ53E183YsZ8S421abLAeDInhU/wCKr53zlPJxGFUOpSlOTqRW02aPVSa+3OuUhe2Q2vH3e/I+G2JAAFAn8YzhuHza1Z0yqo0gh3DBl2AXRfn5+R3iOF9j8Xiy0cOck2e8xsDbNQrbKpPmLFS62REc4yvd2LO7Mo1dfZKgncX5S5kYqG092HUrrLWVBJ8PTb5flKpXJlJJKOhoAKrMt7EEMa2HmL5QNZ/eSqkhT4b2Yll2rlYuyN99t5W4LHqHjV99RXKuoMCSb1LdbegqVuLfRoAy26nqW0tRG1A8gPn6QO0uLYZlwrWPUGUHTrYqGpgL8Is9TfTlC01zQEojWq9WZfASDsd9wSLPlKeDJw1OwYa2sOzs4JIutIYkqNzsu28bk7RC4nxnPqyLjod8ceMMd7BUKboVtUzOGAzFSrYRq1WmDHrIcc9bChyIPz5QL6XxGZV302lFtKkaBVHonhA/PnM5haNWQCyukga8ldayNekbdBO4YBn0EFSSReZlHPqdJNfWXeL4R8OkKUYkWO6N+EHqTQAjZ7Wa2HIgBDh1IAYuBq1G7sY1FAddq9Y/ismd0AC5HBFoWoY9HKxpLMDXQiSmdlBJogKdXKgDyPKq5ylm49gRoKA2N9RU/QRlqw3BZQi6gqkKfCHcNsNRFlALrfnKQYhheR1K7hA4AN0RY23JA+glvhe0mQ1qx0eZRAXF8/EaI+Uyu3uJd3GQZVUIP4QwYFORq2OpjeonnvsID4PtTLmyE0AoIFKg3vzLFvLpMziOCyc2LkDorsnP1ljG2P8Ad31s/fEqUy5FW16GlHXfavKZa5XUqMvFjFjXU3eMoDMtWLG/SvrDpNjRxnIo9jYdb1NXxi8uZ9YomyQQt7sQOZ2NVymTiyYntzn4p2IFHCcigk7+LkNIEp4+23RyP4oG4F95kBHQklNvvH0nGtWQ0dagcra9/mKsxPFjIoDFyw6r3ZfbrW3L1lfL2jncEB9ArdhRb5FkGn6zH4ztHilJ0vkcDmVdV2PO2QXfKHRZrdx5FyCgw680o/VlqRmxvpITAGHh5ZAh67bD7ek8P2jxuQg6kyAj2W75mC+Z9bNSpwXaGTESyjxEbORqYD0J5Q6uK4f/2Q==" alt="Placeholder image">
+                                        <img src="../static/${file}" class="card-img-top">
                                     </figure>
                                 </div>
                                 <div class="card-content">
@@ -61,7 +66,6 @@
                                     <div class="content">
                                         <br>
                                         <p>${content}</p>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                                     </div>
                                 </div>
                             </div>`
@@ -76,22 +80,56 @@
             let title = $('#title').val()
             let content = $('#content').val()
 
+            let file = $('#file')[0].files[0]
+            let form_data = new FormData()
+
+            form_data.append("file_give", file)
+            form_data.append("title_give", title)
+            form_data.append("content_give", content)
+
             $.ajax({
                 type: "POST",
                 url: "/diary",
-                data: {title_give: title, content_give: content},
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function (response) {
-                    alert(response['msg'])
+                    alert(response["msg"])
                     window.location.reload()
                 }
-            })
+            });
         }
 
+        function openClose() {
+            if ($("#post-box").css("display") == "block") {
+                $("#post-box").hide();
+                $("#btn-post-box").text("+");
+            } else {
+                $("#post-box").show();
+                $("#btn-post-box").text("-");
+            }
+        }
     </script>
     <style>
         .postingbox-d1 {
             width: 500px;
             margin: auto auto 50px auto
+        }
+
+        .postingbox-d1 > .hero-body > .custom-file {
+            margin-bottom: 20px;
+        }
+
+        .btn01 {
+            height: 50px;
+            width: 50px;
+            font-size: 30px;
+            padding-bottom: 10px;
+            border-radius: 50px;
+            background-color: #177199;
+            color: white;
+            border-color: white;
         }
     </style>
 </head>
@@ -120,12 +158,14 @@
             </button>
         </div>
     </div>
-
+    <p class="lead">
+        <button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
+    </p>
     <section class="hero is-info postingbox-d1">
-        <div class="hero-body">
+        <div class="hero-body" id="post-box">
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
+                <input type="file" class="custom-file-input" id="file">
+                <label class="custom-file-label">사진선택</label>
             </div>
             <div class="field">
                 <label class="label">Title</label>
@@ -151,27 +191,6 @@
     </section>
 
     <div class="columns" id="cards-box">
-        <div class="column">
-            <div class="card">
-                <div class="card-image">
-                    <figure class="image is-4by3">
-                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                    </figure>
-                </div>
-                <div class="card-content">
-                    <div class="media">
-                        <div class="media-content">
-                            <p class="title is-4">제목</p>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <br>
-                        <p>내용</p>
-                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
