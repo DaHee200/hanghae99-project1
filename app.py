@@ -23,7 +23,7 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
-        return render_template('detail01.html')
+        return render_template('mainPg.html')
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
@@ -33,6 +33,10 @@ def home():
 def login():
     msg = request.args.get("msg")
     return render_template('login.html', msg=msg)
+
+@app.route('/mainPg')
+def mainPg():
+    return render_template("mainPg.html")
 
 @app.route('/detail01')
 def detail01():
