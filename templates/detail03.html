@@ -1,8 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>항해99GPS | S.O.S</title>
+    <!-- Webpage Title -->
+    <title>디테일3 | 항해99 GPS</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <link href="static/css/style.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
     <style>
         header {
             height: 75px;
@@ -28,22 +48,124 @@
     </style>
 
     <script>
-
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
     </script>
 </head>
+
 <body>
 <header>
     <h1>항해GPS</h1>
-    <nav>
-        <span><button onclick="window.location.href='/login'">로그인하기</button></span>
-    </nav>
+    <h1>SOS</h1>
+    <button class="button is-white" onclick="sign_out()">로그아웃</button>
 </header>
-<h1>디테일페이지03</h1>
+<div class="container is-fullhd menuContainer">
+    <div class="columns">
+        <div class="column">
+            <button class="button is-medium is-fullwidth is-info is-outlined" onclick="window.location.href='/main/'">
+                메인페이지로가기
+            </button>
+        </div>
+        <div class="column">
+            <button class="button is-medium is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/diary/'">디테일페이지01로가기
+            </button>
+        </div>
+        <div class="column">
+            <button class="button is-medium is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/gold/'">디테일페이지02로가기
+            </button>
+        </div>
+        <button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
+    </div>
+</div>
 
-<button onclick="window.location.href='/'">메인페이지로가기</button>
-<button class="buttons01"onclick="window.location.href='/detail01'">디테일페이지01로가기</button>
-<button class="buttons02"onclick="window.location.href='/detail02'">디테일페이지02로가기</button>
+<div class="card">
+    <div class="card-content">
+        <p class="title" style="text-align:center;">
+            “질문이 있다면 남겨주세요. 항해 99 튜터님들과 항해원들이 답변해드립니다.”
+        </p>
+        <p class="subtitle">
 
-<button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
+        </p>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+        비공개 질문 To 항해
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
+        비공개 질문 To 튜터
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            data-whatever="@getbootstrap">비공개 질문 To 항해 GPS 운영진
+    </button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <p class="card-footer-item">
+      <span>
+<!--        View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>-->
+      </span>
+        </p>
+        <p class="card-footer-item">
+      <span>
+<!--        Share on <a href="#">Facebook</a>-->
+      </span>
+        </p>
+    </footer>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://comment-test-4.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//comment-test-4.disqus.com/count.js" async></script>
 </body>
 </html>
