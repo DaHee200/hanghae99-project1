@@ -1,0 +1,25 @@
+header {
+    height: 75px;
+    padding: 1rem;
+    background-color: blue;
+    color: white;
+    background: teal;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+}
+header h1 {
+    font-size: 2rem;
+}
+.container {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+.menuContainer {
+    padding-top: 100px !important;
+}
