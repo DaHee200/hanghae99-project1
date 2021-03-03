@@ -110,8 +110,7 @@
                 type: "POST",
                 url: "/Detail02",
                 data: {url_give: url, comment_give: comment},
-                success: function (response) {// 성공하면
-
+                success: function (response) { // 성공하면
                     alert(response["msg"]);
                     window.location.reload()
                 }
@@ -124,25 +123,26 @@
                 url: "/Detail02",
                 data: {},
                 success: function (response) {
-                    let videos = response['all_videos']
-                    for (let i = 0; i < videos.length; i++) {
-                        let title = videos[i]['title']
-                        let image = videos[i]['image']
-                        let url = videos[i]['url']
-                        let desc = videos[i]['desc']
-                        let comment = videos[i]['comment']
+                    let video = response['all_videos']
+                    for (let i = 0; i < video.length; i++) {
+                        let title = video[i]['title']
+                        let image = video[i]['image']
+                        let url = video[i]['url']
+                        let desc = video[i]['desc']
+                        let comment = video[i]['comment']
 
                         let temp_html = `<div class="card">
-                                        <img class="card-img-top"
-                                             src="${image}"
-                                             alt="Card image cap">
-                                        <div class="card-body">
-                                        <a target="_blank" href="${url}" class="card-title">${title}</a>
-                                        <p class="two-line">${desc}</p>
-                                        <p class="card-text comment">${comment}</p>
-                                        </div>`
-                        $('#cards-box').append(temp_html)
+                                                <img class="card-img-top"
+                                                     src="${image}"
+                                                     alt="Card image cap">
+                                                <div class="card-body">
+                                                    <a target="_blank" href="${url}" class="card-title">${title}</a>
+                                                    <p class="card-text">${desc}</p>
+                                                    <p class="card-text comment">${comment}</p>
+                                                </div>
+                                            </div>`
 
+                        $('#cards-box').append(temp_html)
                     }
                 }
             })
@@ -169,7 +169,7 @@
             </div>
             <div class="column">
                 <button class="button is-medium is-fullwidth is-info is-outlined"
-                        onclick="window.location.href='/detail02'">항해일지
+                        onclick="window.location.href='/detail01'">항해일지
                 </button>
             </div>
             <div class="column">
@@ -192,28 +192,17 @@
         <div>
             <div class="form-group">
                 <label for="post-url">공유하고 싶은 URL</label>
-                <input id="post-url" class="form-control" placeholder="">
+                <input id="post-url" class="form-control" >
             </div>
             <div class="form-group">
                 <label for="post-comment">작성자</label>
                 <textarea id="post-comment" class="form-control" rows="2"></textarea>
             </div>
-            <button type="button" class="btn btn-primary" onclick="postArticle()">기사저장</button>
+            <button type="button" class="btn btn-primary" onclick="postArticle()">포스팅하기</button>
         </div>
     </div>
     <div id="cards-box" class="card-columns">
-        <div class="card">
-            <img class="card-img-top"
-                 src="https://th.bing.com/th/id/OIP.K2x-QJCsoJgiyT98sfW1OAHaEK?w=315&h=180&c=7&o=5&dpr=1.25&pid=1.7"
-                 alt="Card image cap">
-            <div class="card-body">
-                <a target="_blank" href="https://www.youtube.com/watch?v=dmY5cPeDU3A" class="card-title">오늘은 인턴이 라면 요리사!
-                    (노동 중 먹는 라면은 진리)</a>
-                <p class="two-line">사장님 마음 담아 #윤스테이​
-                    매주 금 밤 9시 tvN</p>
-                <p class="card-text comment">좋아좋아</p>
-            </div>
-        </div>
+
     </div>
 </div>
 </body>

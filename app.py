@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import jwt
 import datetime
+import requests
 import hashlib
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
@@ -13,8 +14,10 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 from pymongo import MongoClient
-client = MongoClient('mongodb://13.125.97.225', 27017, username="test", password="test")
-db = client.userinfor
+
+client = MongoClient('mongodb://13.209.41.204', 27017, username="test", password="test")
+db = client.dbsparta
+
 
 @app.route('/')
 def home():
@@ -57,12 +60,10 @@ def detail03():
 
 @app.route('/Detail02', methods=['GET'])
 def listing():
-
     videos = list(db.videos.find({}, {'_id': False}))
     return jsonify({'all_videos': videos})
 
-    return jsonify({'msg':'GET 연결되었습니다!'})
-
+    return jsonify({'msg': 'GET 연결되었습니다!'})
 
 
 @app.route('/Detail02', methods=['POST'])
@@ -73,7 +74,7 @@ def saving():
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-    data = request.get(url_receive, headers=headers)
+    data = requests.get(url_receive, headers=headers)
 
     soup = BeautifulSoup(data.text, 'html.parser')
 
@@ -91,7 +92,7 @@ def saving():
 
     db.videos.insert_one(doc)
 
-    return jsonify({'msg': '저장이 완료되었습니다'})
+    return jsonify({'msg': '저장이 완료되었습니다!'})
 
 
 @app.route('/user/<username>')
@@ -144,6 +145,7 @@ def sign_up():
         "profile_info": ""  # 프로필 한 마디
     }
     db.users.insert_one(doc)
+
     return jsonify({'result': 'success'})
 
 
@@ -196,8 +198,6 @@ def get_posts():
         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
-
-
 
 
 if __name__ == '__main__':
