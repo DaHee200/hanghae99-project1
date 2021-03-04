@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Webpage Title -->
-    <title> 항해99GPS | 항해일지 </title>
+    <title> 항해GPS | 항해일지 </title>
 
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
@@ -12,6 +12,7 @@
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -38,40 +39,40 @@
             window.location.href = "/login"
         }
 
-        function listing() {
-            $.ajax({
-                type: "GET",
-                url: "/diary",
-                data: {},
-                success: function (response) {
-                    let diaries = response['all_diary']
-                    for (let i = 0; i < diaries.length; i++) {
-                        let title = diaries[i]['title']
-                        let content = diaries[i]['content']
-                        let file = diaries[i]['file']
-
-
-                        let temp_html =
-                            `<div class="col-md-4">
-                            <div class="card" style="width: 100%;">
-                                <img src="../static/${file}" class="card-img-top" alt="${file}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${title}</h5>
-                                    <p class="card-text">${content}</p>
-                                </div>
-                            </div>
-                            </div>`
-                        $('#cards-box').append(temp_html)
-
-                    }
-                }
-            })
-        }
+        {#function listing() {#}
+        {#    $.ajax({#}
+        {#        type: "GET",#}
+        {#        url: "/diary",#}
+        {#        data: {},#}
+        {#        success: function (response) {#}
+        {#            let diaries = response['all_diary']#}
+        {#            for (let i = 0; i < diaries.length; i++) {#}
+        {#                let title = diaries[i]['title']#}
+        {#                let content = diaries[i]['content']#}
+        {#                let file = diaries[i]['file']#}
+        {##}
+        {##}
+        {#                let temp_html =#}
+        {#                    `<div class="col-md-4">#}
+        {#                    <div class="card" style="width: 100%;">#}
+        {#                        <img src="../static/${file}" class="card-img-top" alt="${file}">#}
+        {#                        <div class="card-body">#}
+        {#                            <h5 class="card-title">${title}</h5>#}
+        {#                            <p class="card-text">${content}</p>#}
+        {#                        </div>#}
+        {#                    </div>#}
+        {#                    </div>`#}
+        {#                $('#cards-box').append(temp_html)#}
+        {##}
+        {#            }#}
+        {#        }#}
+        {#    })#}
+        {##}
 
         function submit() {
             let title = $('#title').val()
             let content = $('#content').val()
-            
+
             let file = $('#file')[0].files[0]
             let form_data = new FormData()
 
@@ -104,15 +105,6 @@
         }
     </script>
     <style>
-        .postingbox-d1 {
-            width: 500px;
-            margin: auto auto 50px auto
-        }
-
-        .postingbox-d1 > .hero-body > .custom-file {
-            margin-bottom: 20px;
-        }
-
         .btn01 {
             height: 50px;
             width: 50px;
@@ -128,9 +120,10 @@
             display: none;
         }
 
-        #cards-box .col-md-4{
+        #cards-box .col-md-4 {
             margin-bottom: 15px;
         }
+
         #cards-box .card-body {
             padding: 1rem;
         }
@@ -166,6 +159,11 @@
             </button>
         </div>
         <div class="column">
+            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/detail01'">
+                항해일지
+            </button>
+        </div>
+        <div class="column">
             <button class="button is-large is-fullwidth is-info is-outlined"
                     onclick="window.location.href='/detail02'">보물창고
             </button>
@@ -184,7 +182,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6 formBox">
             <div class="mb-3">
-                <div class="formTitle">포스트박스 제목 넣는 곳</div>
+                <div class="formTitle">포스팅박스</div>
             </div>
             <div class="mb-3 custom-file">
                 <input type="file" class="custom-file-input" id="file">
@@ -195,13 +193,25 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
-                <input type="text" class="form-control" placeholder="제목입력" id="content">
+                <input type="text" class="form-control" placeholder="내용입력" id="content">
             </div>
             <button type="submit" class="btn btn-primary" onclick="submit()">Submit</button>
         </div>
     </div>
 
     <div class="row" id="cards-box">
+        {% for diary in diaries %}
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <img src="../static/{{ diary.file }}" class="card-img-top" alt="{{ diary.file }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ diary.title }}</h5>
+                        <p class="card-text">{{ diary.content }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
     </div>
 </div>
 

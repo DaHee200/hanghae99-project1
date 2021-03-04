@@ -36,7 +36,7 @@
 <body>
 <header>
     <div class="headerLogo">항해GPS</div>
-    <div class="headerTitle">항해일지</div>
+    <div class="headerTitle">S.O.S</div>
     <button class="button is-white" onclick="sign_out()">로그아웃</button>
 </header>
 
@@ -48,8 +48,8 @@
             </button>
         </div>
         <div class="column">
-            <button class="button is-large is-fullwidth is-info is-outlined"
-                    onclick="window.location.href='/detail01'">항해일지
+            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/detail01'">
+                항해일지
             </button>
         </div>
         <div class="column">
@@ -57,8 +57,12 @@
                     onclick="window.location.href='/detail02'">보물창고
             </button>
         </div>
+        <div class="column">
+            <button class="button is-large is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/detail03'">S.O.S
+            </button>
+        </div>
     </div>
-</div>
 
 <div class="card">
     <div class="card-content">
@@ -69,16 +73,6 @@
 
         </p>
     </div>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-        비공개 질문 To 항해
-    </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
-        비공개 질문 To 튜터
-    </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-            data-whatever="@getbootstrap">비공개 질문 To 항해 GPS 운영진
-    </button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">

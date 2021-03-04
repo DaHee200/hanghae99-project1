@@ -42,22 +42,24 @@ def mainPg():
 
 @app.route('/detail01')
 def detail01():
-    return render_template("detail01.html")
+    diary = list(db.diary.find({}, {'_id': False}))
+    return render_template("detail01.html", diaries=diary)
 
 @app.route('/detail02')
 def detail02():
-    return render_template("detail02.html")
+    video = list(db.videos.find({}, {'_id': False}))
+    return render_template("detail02.html", videos=video)
 
 @app.route('/detail03')
 def detail03():
     return render_template("detail03.html")
 
-@app.route('/Detail02', methods=['GET'])
-def listing():
-    videos = list(db.videos.find({}, {'_id': False}))
-    return jsonify({'all_videos': videos})
-
-    return jsonify({'msg': 'GET 연결되었습니다!'})
+# @app.route('/Detail02', methods=['GET'])
+# def listing():
+#     videos = list(db.videos.find({}, {'_id': False}))
+#     return jsonify({'all_videos': videos})
+#
+#     return jsonify({'msg': 'GET 연결되었습니다!'})
 
 
 @app.route('/Detail02', methods=['POST'])
@@ -135,10 +137,10 @@ def check_dup():
     exists = bool(db.users.find_one({"username": username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
-@app.route('/diary', methods=['GET'])
-def show_diary():
-    diaries = list(db.diary.find({}, {'_id':False}))
-    return jsonify({'all_diary': diaries})
+# @app.route('/diary', methods=['GET'])
+# def show_diary():
+#     diaries = list(db.diary.find({}, {'_id':False}))
+#     return jsonify({'all_diary': diaries})
 
 @app.route('/diary', methods=['POST'])
 def save_diary():

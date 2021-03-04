@@ -29,20 +29,23 @@
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <link href="/static/css/style.css" rel="stylesheet">
+
+
     <title> 항해GPS | 보물창고 </title>
 
     <!-- style -->
-    <style type="text/css">
-        header {
-            height: 75px;
-            padding: 1rem;
-            color: white;
-            background: rgb(98, 104, 221);
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    <style>
+        {#header {#}
+        {#    height: 75px;#}
+        {#    padding: 1rem;#}
+        {#    color: white;#}
+        {#    background: rgb(98, 104, 221);#}
+        {#    font-weight: bold;#}
+        {#    display: flex;#}
+        {#    justify-content: space-between;#}
+        {#    align-items: center;#}
+        {##}
 
         .btn01 {
             height: 50px;
@@ -55,10 +58,10 @@
             border-color: white;
         }
 
-        .wrap {
-            width: 900px;
-            margin: auto;
-        }
+        {#.wrap {#}
+        {#    width: 900px;#}
+        {#    margin: auto;#}
+        {##}
 
         .comment {
             color: blue;
@@ -85,6 +88,7 @@
         .jumbotron {
             margin-top: 20px;
         }
+
         .card {
         }
 
@@ -119,69 +123,69 @@
             })
         }
 
-        function showArticles() {
-            $.ajax({
-                type: "GET",
-                url: "/Detail02",
-                data: {},
-                success: function (response) {
-                    let video = response['all_videos']
-                    for (let i = 0; i < video.length; i++) {
-                        let title = video[i]['title']
-                        let image = video[i]['image']
-                        let url = video[i]['url']
-                        let desc = video[i]['desc']
-                        let comment = video[i]['comment']
-
-                        let temp_html = `<div class="card">
-                                                <img class="card-img-top"
-                                                     src="${image}"
-                                                     alt="Card image cap">
-                                                <div class="card-body">
-                                                    <a target="_blank" href="${url}" class="card-title">${title}</a>
-                                                    <p class="card-text">${desc}</p>
-                                                    <p class="card-text comment">${comment}</p>
-                                                </div>
-                                            </div>`
-
-                        $('#cards-box').append(temp_html)
-                    }
-                }
-            })
-        }
+        {#function showArticles() {#}
+        {#    $.ajax({#}
+        {#        type: "GET",#}
+        {#        url: "/Detail02",#}
+        {#        data: {},#}
+        {#        success: function (response) {#}
+        {#            let video = response['all_videos']#}
+        {#            for (let i = 0; i < video.length; i++) {#}
+        {#                let title = video[i]['title']#}
+        {#                let image = video[i]['image']#}
+        {#                let url = video[i]['url']#}
+        {#                let desc = video[i]['desc']#}
+        {#                let comment = video[i]['comment']#}
+        {##}
+        {#                let temp_html = `<div class="card">#}
+        {#                                        <img class="card-img-top"#}
+        {#                                             src="${image}"#}
+        {#                                             alt="Card image cap">#}
+        {#                                        <div class="card-body">#}
+        {#                                            <a target="_blank" href="${url}" class="card-title">${title}</a>#}
+        {#                                            <p class="card-text">${desc}</p>#}
+        {#                                            <p class="card-text comment">${comment}</p>#}
+        {#                                        </div>#}
+        {#                                    </div>`#}
+        {##}
+        {#                $('#cards-box').append(temp_html)#}
+        {#            }#}
+        {#        }#}
+        {#    })#}
+        {##}
     </script>
-
 </head>
 
 <body>
 <header>
-    <h1>항해GPS</h1>
-    <nav>
-        <span><button onclick="window.location.href='/login'">로그아웃</button></span>
-    </nav>
+    <div class="headerLogo">항해GPS</div>
+    <div class="headerTitle">보물창고</div>
+    <button class="button is-white" onclick="sign_out()">로그아웃</button>
 </header>
 
-<div class="wrap">
-    <div class="container is-fullhd menuContainer">
-        <div class="columns">
-            <div class="column">
-                <button class="button is-medium is-fullwidth is-info is-outlined"
-                        onclick="window.location.href='/mainPg'">항해GPS
-                </button>
-            </div>
-            <div class="column">
-                <button class="button is-medium is-fullwidth is-info is-outlined"
-                        onclick="window.location.href='/detail01'">항해일지
-                </button>
-            </div>
-            <div class="column">
-                <button class="button is-medium is-fullwidth is-info is-outlined"
-                        onclick="window.location.href='/detail03'">S.O.S
-                </button>
-            </div>
+<div class="container is-fullhd menuContainer">
+    <div class="columns">
+        <div class="column">
+            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/mainPg'">
+                항해GPS
+            </button>
+        </div>
+        <div class="column">
+            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/detail01'">
+                항해일지
+            </button>
+        </div>
+        <div class="column">
+            <button class="button is-large is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/detail02'">보물창고
+            </button>
+        </div>
+        <div class="column">
+            <button class="button is-large is-fullwidth is-info is-outlined"
+                    onclick="window.location.href='/detail03'">S.O.S
+            </button>
         </div>
     </div>
-
     <div class="jumbotron">
         <p class="display-4">항해99 선언들을 위한 보물 바다</p>
         <p class="lead">좋은 정보나 동기부여를 위한 링크를 공유하는 공간입니다</p>
@@ -194,7 +198,7 @@
         <div>
             <div class="form-group">
                 <label for="post-url">공유하고 싶은 URL</label>
-                <input id="post-url" class="form-control" >
+                <input id="post-url" class="form-control">
             </div>
             <div class="form-group">
                 <label for="post-comment">작성자</label>
@@ -204,6 +208,18 @@
         </div>
     </div>
     <div id="cards-box" class="card-columns">
+        {% for video in videos %}
+            <div class="card">
+                <img class="card-img-top"
+                     src="{{ video.image }}"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <a target="_blank" href="{{ video.url }}" class="card-title">{{ video.title }}</a>
+                    <p class="card-text">{{ video.desc }}</p>
+                    <p class="card-text comment">{{ video.comment }}</p>
+                </div>
+            </div>
+        {% endfor %}
 
     </div>
 </div>
