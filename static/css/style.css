@@ -15,10 +15,10 @@ header {
     top: 0;
 }
 header .headerLogo {
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 header .headerTitle {
-    font-size: 3rem;
+    font-size: 2.2rem;
 }
 
 /* 공통 컨테이너 css */
