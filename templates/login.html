@@ -8,6 +8,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='gps.ico') }}"
+          type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='gps.ico/') }}" type="image/x-icon">
+    <meta property="og:title" content="항해GPS"/>
+    <meta property="og:description" content="안전한 항해를 도와주는 커뮤니티"/>
+    <meta property="og:image" content="{{ url_for('static', filename='GPS_OGImage.jpg') }}"/>
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
@@ -22,7 +28,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <style>
-            body {
+        body {
             background-color: rgb(98, 104, 221);
             min-height: 100vh;
         }

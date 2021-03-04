@@ -10,6 +10,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='gps.ico') }}"
+          type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='gps.ico/') }}" type="image/x-icon">
+    <meta property="og:title" content="항해GPS"/>
+    <meta property="og:description" content="안전한 항해를 도와주는 커뮤니티"/>
+    <meta property="og:image" content="{{ url_for('static', filename='GPS_OGImage.jpg') }}"/>
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
@@ -104,9 +110,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12"
-                     style="text-align: center; color:#417556; font-family: 'Jua', sans-serif;'">
+                     style="text-align: center; color:#938ae5; font-family: 'Jua', sans-serif;'">
                     <h2>항해 99 1기 이수율</h2>
-                    <p>""""Steady wins the race""""</p>
+                    <p>Steady wins the race!!</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped" style="min-width: 20px;"></div>
                     </div>
@@ -118,8 +124,9 @@
     </div>
 
     <footer class="footer">
-        <div class="content has-text-centered">
+        <div class="content has-text-centered" style = "color:#938ae5;">
             <p><strong>항해GPS</strong> 당신의 99일의 항해를 안전하게 모시겠습니다</p>
         </div>
     </footer>
+</div>
 </html>
