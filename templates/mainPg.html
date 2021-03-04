@@ -3,7 +3,7 @@
 <head>
 
     <!-- Webpage Title -->
-    <title>메인페이지 | 항해99 GPS</title>
+    <title>항해GPS | 항해GPS</title>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
 
@@ -21,8 +21,9 @@
           crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Pen+Script&display=swap"
-          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
 
     <link href="/static/css/style.css" rel="stylesheet">
 
@@ -38,75 +39,87 @@
             alert('로그아웃!')
             window.location.href = "/login"
         }
-        $( document ).ready(function() {
+
+        $(document).ready(function () {
 
             let date = new Date();
 
             const date2 = new Date('2021-06-04');
 
-            let temp = (date2-date)/(24*60*60*1000);
+            let temp = (date2 - date) / (24 * 60 * 60 * 1000);
             let end = 96;
-            let studing = Math.floor((end-Math.floor(temp).toFixed())/end*100);
+            let studing = Math.floor((end - Math.floor(temp).toFixed()) / end * 100);
 
             $(".progress-bar").css("width", studing + "%").text(studing + " %");
-        });        
+        });
     </script>
-    
+
     <style>
+
         .column {
             margin-top: 20px;
         }
-        .mainImg{
+
+        .mainImg {
             width: 100%;
             margin-bottom: 20px;
+
         }
     </style>
 </head>
 
-<body>
-<header>
-    <div class="headerLogo">항해GPS</div>
-    <div class="headerTitle">메인페이지</div>
-    <button class="button is-white" onclick="sign_out()">로그아웃</button>
-</header>
+<div>
+    <header>
+        <div class="headerLogo">항해GPS</div>
+        <div class="headerTitle">항해GPS</div>
+        <button class="button is-white" onclick="sign_out()">로그아웃</button>
+    </header>
 
-<div class="container is-fullhd menuContainer">
-    <div class="columns">
-        <div class="column">
-            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/mainPg'">
-                항해GPS
-            </button>
-        </div>
-        <div class="column">
-            <button class="button is-large is-fullwidth is-info is-outlined" onclick="window.location.href='/detail01'">
-                항해일지
-            </button>
-        </div>
-        <div class="column">
-            <button class="button is-large is-fullwidth is-info is-outlined"
-                    onclick="window.location.href='/detail02'">보물창고
-            </button>
-        </div>
-        <div class="column">
-            <button class="button is-large is-fullwidth is-info is-outlined"
-                    onclick="window.location.href='/detail03'">S.O.S
-            </button>
-        </div>
-    </div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <img class="mainImg" src="/static/main.png">
-            <h2>항해 99 이수</h2>
-            <p>""""Steady wins the race""""</p>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped" style="min-width: 20px;"></div>
+    <div class="container is-fullhd menuContainer">
+        <div class="columns">
+            <div class="column">
+                <button class="button is-large is-fullwidth is-info is-outlined"
+                        onclick="window.location.href='/mainPg'">
+                    항해GPS
+                </button>
+            </div>
+            <div class="column">
+                <button class="button is-large is-fullwidth is-info is-outlined"
+                        onclick="window.location.href='/detail01'">
+                    항해일지
+                </button>
+            </div>
+            <div class="column">
+                <button class="button is-large is-fullwidth is-info is-outlined"
+                        onclick="window.location.href='/detail02'">보물창고
+                </button>
+            </div>
+            <div class="column">
+                <button class="button is-large is-fullwidth is-info is-outlined"
+                        onclick="window.location.href='/detail03'">S.O.S
+                </button>
             </div>
         </div>
-    </div>
-    
-</div>
 
-</head>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"
+                     style="text-align: center; color:#417556; font-family: 'Jua', sans-serif;'">
+                    <h2>항해 99 1기 이수율</h2>
+                    <p>""""Steady wins the race""""</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" style="min-width: 20px;"></div>
+                    </div>
+                    <img class="mainImg" src="static/hh99.png">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p><strong>항해GPS</strong> 당신의 99일의 항해를 안전하게 모시겠습니다</p>
+        </div>
+    </footer>
 </html>

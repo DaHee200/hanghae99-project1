@@ -31,7 +31,6 @@
     <script>
         $(document).ready(function () {
             bsCustomFileInput.init()
-            listing()
         })
 
         function sign_out() {
@@ -40,35 +39,6 @@
             window.location.href = "/login"
         }
 
-        {#function listing() {#}
-        {#    $.ajax({#}
-        {#        type: "GET",#}
-        {#        url: "/diary",#}
-        {#        data: {},#}
-        {#        success: function (response) {#}
-        {#            let diaries = response['all_diary']#}
-        {#            for (let i = 0; i < diaries.length; i++) {#}
-        {#                let title = diaries[i]['title']#}
-        {#                let content = diaries[i]['content']#}
-        {#                let file = diaries[i]['file']#}
-        {##}
-        {##}
-        {#                let temp_html =#}
-        {#                    `<div class="col-md-4">#}
-        {#                    <div class="card" style="width: 100%;">#}
-        {#                        <img src="../static/${file}" class="card-img-top" alt="${file}">#}
-        {#                        <div class="card-body">#}
-        {#                            <h5 class="card-title">${title}</h5>#}
-        {#                            <p class="card-text">${content}</p>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                    </div>`#}
-        {#                $('#cards-box').append(temp_html)#}
-        {##}
-        {#            }#}
-        {#        }#}
-        {#    })#}
-        {##}
 
         function submit() {
             let title = $('#title').val()
@@ -143,6 +113,9 @@
             font-weight: bold;
             margin-bottom: 24px;
         }
+        .custom-file{
+            margin-bottom: 20px;
+        }
 
     </style>
 </head>
@@ -185,10 +158,11 @@
         <div class="col-md-3"></div>
         <div class="col-md-6 formBox">
             <div class="mb-3">
-                <div class="formTitle">포스팅박스</div>
+                <div class="formTitle">공부하는 모습을 올려주세요 :) </div>
             </div>
-            <div class="mb-3 custom-file">
+            <div class="custom-file">
                 <input type="file" class="custom-file-input" id="file">
+                <label class="custom-file-label" for="inputGroupFile01">사진선택</label>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>

@@ -1,7 +1,8 @@
 <!Doctype html>
-<html lang="ko">
-
+<html lang="en">
 <head>
+    <title> 항해GPS | 보물창고 </title>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,22 +24,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
 
     <!-- 구글폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
-    
+
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/static/css/style.css" rel="stylesheet">
 
-
-    <title> 항해GPS | 보물창고 </title>
-
     <!-- style -->
     <style>
-
         .btn01 {
             height: 50px;
             width: 50px;
@@ -49,11 +48,6 @@
             color: white;
             border-color: white;
         }
-
-        {#.wrap {#}
-        {#    width: 900px;#}
-        {#    margin: auto;#}
-        {##}
 
         .comment {
             color: blue;
@@ -81,14 +75,18 @@
             margin-top: 20px;
         }
 
-        .card {
-        }
 
     </style>
+
     <script>
         $(document).ready(function () {
-            showArticles();
         });
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
 
         function openClose() {
             if ($("#post-box").css("display") == "block") {
@@ -114,37 +112,6 @@
                 }
             })
         }
-
-        {#function showArticles() {#}
-        {#    $.ajax({#}
-        {#        type: "GET",#}
-        {#        url: "/Detail02",#}
-        {#        data: {},#}
-        {#        success: function (response) {#}
-        {#            let video = response['all_videos']#}
-        {#            for (let i = 0; i < video.length; i++) {#}
-        {#                let title = video[i]['title']#}
-        {#                let image = video[i]['image']#}
-        {#                let url = video[i]['url']#}
-        {#                let desc = video[i]['desc']#}
-        {#                let comment = video[i]['comment']#}
-        {##}
-        {#                let temp_html = `<div class="card">#}
-        {#                                        <img class="card-img-top"#}
-        {#                                             src="${image}"#}
-        {#                                             alt="Card image cap">#}
-        {#                                        <div class="card-body">#}
-        {#                                            <a target="_blank" href="${url}" class="card-title">${title}</a>#}
-        {#                                            <p class="card-text">${desc}</p>#}
-        {#                                            <p class="card-text comment">${comment}</p>#}
-        {#                                        </div>#}
-        {#                                    </div>`#}
-        {##}
-        {#                $('#cards-box').append(temp_html)#}
-        {#            }#}
-        {#        }#}
-        {#    })#}
-        {##}
     </script>
 </head>
 
@@ -179,8 +146,8 @@
         </div>
     </div>
     <div class="jumbotron">
-        <p class="display-4">항해99 선언들을 위한 보물 바다</p>
-        <p class="lead">좋은 정보나 동기부여를 위한 링크를 공유하는 공간입니다</p>
+        <p class="display-4">항해99 선원들을 위한 보물창고</p>
+        <p class="lead">좋은 영상 및 글을 공유하는 공간입니다</p>
         <hr class="my-4">
         <p class="lead">
             <button onclick="openClose()" id="btn-post-box" type="button" class="btn01">+</button>
@@ -215,6 +182,11 @@
 
     </div>
 </div>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p><strong>항해GPS</strong> 당신의 99일의 항해를 안전하게 모시겠습니다</p>
+    </div>
+</footer>
 </body>
 
 </html>

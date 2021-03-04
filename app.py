@@ -54,14 +54,6 @@ def detail02():
 def detail03():
     return render_template("detail03.html")
 
-# @app.route('/Detail02', methods=['GET'])
-# def listing():
-#     videos = list(db.videos.find({}, {'_id': False}))
-#     return jsonify({'all_videos': videos})
-#
-#     return jsonify({'msg': 'GET 연결되었습니다!'})
-
-
 @app.route('/Detail02', methods=['POST'])
 def saving():
     ## API 역할을 하는 부분
@@ -88,7 +80,7 @@ def saving():
 
     db.videos.insert_one(doc)
 
-    return jsonify({'msg': '저장이 완료되었습니다!'})
+    return jsonify({'msg': '포스팅완료!'})
 
 
 
