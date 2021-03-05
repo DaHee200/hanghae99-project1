@@ -1,9 +1,5 @@
 /* 공통 header css */
 
-. * {
-    font-family: 'Jua', sans-serif;
-}
-
 header {
     height: 75px;
     padding: 1rem;
@@ -22,21 +18,32 @@ header {
 
 header .headerLogo {
     font-size: 1.2rem;
+    font-family: 'Jua', sans-serif;
+
 }
 
 header .headerTitle {
     font-size: 2.2rem;
+    font-family: 'Jua', sans-serif;
+
 }
 
 /* 공통 컨테이너 css */
 .container {
     padding-top: 24px;
     padding-bottom: 24px;
+    font-family: 'Jua', sans-serif;
+
 }
 
 .menuContainer {
     padding-top: 100px !important;
+    font-family: 'Jua', sans-serif;
 }
+<<<<<<< HEAD
 .content has-text-centered{
     color:#938ae5
 }
+=======
+
+>>>>>>> e3019b4bae072f9a2d49496b14d2d0e9e70730df
